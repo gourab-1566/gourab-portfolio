@@ -41,7 +41,11 @@ export function LoadingScreen({ onDone }: { onDone: () => void }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(20px)" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background noise"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
+          style={{ position: "fixed" }}
+        >
+          {/* Noise overlay */}
+          <div className="pointer-events-none absolute inset-0 noise opacity-100" />
         >
           {/* Particles ring */}
           <div className="relative h-[280px] w-[280px] sm:h-[340px] sm:w-[340px] flex items-center justify-center">
