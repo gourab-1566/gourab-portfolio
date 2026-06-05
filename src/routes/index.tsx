@@ -1,29 +1,64 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Skills } from "@/components/Skills";
+import { Projects } from "@/components/Projects";
+import { Achievements } from "@/components/Achievements";
+import { ECA } from "@/components/ECA";
+import { Quote } from "@/components/Quote";
+import { FutureVision } from "@/components/FutureVision";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Gourab Deb — Student Developer & Future Software Entrepreneur" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Gourab Deb — student developer from Bangladesh building software, exploring AI, and turning curiosity into real-world products.",
+      },
+      { property: "og:title", content: "Gourab Deb — Student Developer & Future Entrepreneur" },
+      {
+        property: "og:description",
+        content: "Building technology that turns curiosity into real-world impact.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [loaded, setLoaded] = useState(false);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
+      <div className="relative min-h-screen bg-background noise">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Achievements />
+          <ECA />
+          <Quote />
+          <FutureVision />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
