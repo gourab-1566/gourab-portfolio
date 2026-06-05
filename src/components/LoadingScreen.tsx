@@ -46,7 +46,6 @@ export function LoadingScreen({ onDone }: { onDone: () => void }) {
         >
           {/* Noise overlay */}
           <div className="pointer-events-none absolute inset-0 noise opacity-100" />
-        >
           {/* Particles ring */}
           <div className="relative h-[280px] w-[280px] sm:h-[340px] sm:w-[340px] flex items-center justify-center">
             <motion.div
