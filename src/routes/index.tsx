@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
@@ -44,7 +45,12 @@ function Index() {
   return (
     <>
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
-      <div className="relative min-h-screen bg-background noise">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative min-h-screen bg-background noise"
+      >
         <Navbar />
         <main>
           <Hero />
@@ -58,7 +64,7 @@ function Index() {
           <Contact />
         </main>
         <Footer />
-      </div>
+      </motion.div>
     </>
   );
 }
