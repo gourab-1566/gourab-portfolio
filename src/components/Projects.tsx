@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import veloraThumb from "@/assets/velora-thumb.png.asset.json";
 
 const projects = [
   {
