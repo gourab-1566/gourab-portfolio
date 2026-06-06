@@ -55,10 +55,8 @@ function Index() {
           <About />
           <Skills />
           <Projects />
-          <Achievements />
-          <ECA />
           <Quote />
-          <FutureVision />
+          <CollapsibleSections />
           <Contact />
         </main>
         <Footer />
