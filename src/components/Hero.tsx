@@ -12,7 +12,54 @@ export function Hero() {
         style={{ background: "var(--gradient-radial-red)", filter: "blur(40px)" }}
       />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.3fr_1fr]">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1.3fr]">
+        {/* Portrait */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-md"
+        >
+          <div className="absolute -inset-6 rounded-[2rem] bg-primary/20 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 shadow-elegant">
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-transparent to-transparent" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-br from-transparent via-transparent to-primary/30 mix-blend-overlay" />
+            <img
+              src={gourabAsset.url}
+              alt="Gourab Deb"
+              className="aspect-[4/5] w-full object-cover"
+            />
+            <div className="absolute bottom-4 left-4 right-4 z-20 flex items-end justify-between">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                  Portrait / 01
+                </div>
+                <div className="font-display text-lg font-medium">Gourab Deb</div>
+              </div>
+              <div className="rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                Bangladesh
+              </div>
+            </div>
+          </div>
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-6 -left-6 z-20 glass-strong rounded-2xl p-4 shadow-elegant"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
+                <Sparkles size={18} />
+              </div>
+              <div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+                  Currently
+                </div>
+                <div className="text-sm">Building Velora</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
         <div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -94,53 +141,6 @@ export function Hero() {
             ))}
           </motion.div>
         </div>
-
-        {/* Portrait */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-md"
-        >
-          <div className="absolute -inset-6 rounded-[2rem] bg-primary/20 blur-3xl" />
-          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 shadow-elegant">
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-transparent to-transparent" />
-            <div className="absolute inset-0 z-10 bg-gradient-to-br from-transparent via-transparent to-primary/30 mix-blend-overlay" />
-            <img
-              src={gourabAsset.url}
-              alt="Gourab Deb"
-              className="aspect-[4/5] w-full object-cover"
-            />
-            <div className="absolute bottom-4 left-4 right-4 z-20 flex items-end justify-between">
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  Portrait / 01
-                </div>
-                <div className="font-display text-lg font-medium">Gourab Deb</div>
-              </div>
-              <div className="rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-                Bangladesh
-              </div>
-            </div>
-          </div>
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-6 -left-6 z-20 glass-strong rounded-2xl p-4 shadow-elegant"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <Sparkles size={18} />
-              </div>
-              <div>
-                <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
-                  Currently
-                </div>
-                <div className="text-sm">Building Velora</div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
 
       {/* Marquee */}
