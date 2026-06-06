@@ -13,7 +13,7 @@ const projects = [
     live: "https://velora-style.lovable.app",
     code: "https://github.com/gourab-1566/velora-style",
     accent: "from-primary/40 to-transparent",
-  },
+    image: veloraThumb.url,
   {
     n: "02",
     name: "FocusOS",
