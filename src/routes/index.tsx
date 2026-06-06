@@ -40,9 +40,22 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [loaded, setLoaded] = useState(false);
+
+  if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  const handleDone = () => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    setLoaded(true);
+  };
+
   return (
     <>
-      {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
+      {!loaded && <LoadingScreen onDone={handleDone} />}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: loaded ? 1 : 0 }}
