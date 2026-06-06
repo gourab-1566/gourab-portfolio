@@ -121,16 +121,27 @@ export function Projects() {
               </div>
 
               <div className={`relative min-h-[280px] overflow-hidden bg-onyx md:min-h-full`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-80`} />
-                <div className="absolute inset-0 grid-bg opacity-60" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-primary/30 blur-3xl" />
-                    <div className="relative font-display text-[180px] font-bold leading-none text-white/5 md:text-[220px]">
-                      {p.name.slice(0, 2).toUpperCase()}
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`${p.name} thumbnail`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-80`} />
+                    <div className="absolute inset-0 grid-bg opacity-60" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-full bg-primary/30 blur-3xl" />
+                        <div className="relative font-display text-[180px] font-bold leading-none text-white/5 md:text-[220px]">
+                          {p.name.slice(0, 2).toUpperCase()}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </>
+                )}
                 <div className="absolute right-6 top-6">
                   <div className="rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
                     {p.tag}
