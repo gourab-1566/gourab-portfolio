@@ -15,18 +15,21 @@ export function CollapsibleSections() {
   const [value, setValue] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const sync = () => {
+    const sync = (fromEvent: boolean) => {
       const h = window.location.hash.replace("#", "");
       if (items.some((i) => i.id === h)) {
         setValue(h);
-        setTimeout(() => {
-          document.getElementById(h)?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 80);
+        if (fromEvent) {
+          setTimeout(() => {
+            document.getElementById(h)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 80);
+        }
       }
     };
-    sync();
-    window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
+    // Do not auto-scroll on initial mount — only react to user-triggered hash changes
+    const onHashChange = () => sync(true);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   return (
