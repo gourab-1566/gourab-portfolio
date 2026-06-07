@@ -67,8 +67,17 @@ function Index() {
 
   useEffect(() => {
     const handlePageShow = () => resetHomePosition();
+    const handleHashChange = () => {
+      if (!window.location.hash) {
+        requestAnimationFrame(resetHomePosition);
+      }
+    };
     window.addEventListener("pageshow", handlePageShow);
-    return () => window.removeEventListener("pageshow", handlePageShow);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, [resetHomePosition]);
 
   const handleDone = () => {
