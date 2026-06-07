@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
@@ -41,16 +41,43 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [loaded, setLoaded] = useState(false);
 
-  if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
-    window.history.scrollRestoration = "manual";
-  }
+  const resetHomePosition = useCallback(() => {
+    if (typeof window === "undefined") return;
 
-  const handleDone = () => {
-    if (typeof window !== "undefined" && window.location.hash) {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
     }
+
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
+  useLayoutEffect(() => {
+    resetHomePosition();
+  }, [resetHomePosition]);
+
+  useEffect(() => {
+    const handlePageShow = () => resetHomePosition();
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, [resetHomePosition]);
+
+  const handleDone = () => {
+    resetHomePosition();
     setLoaded(true);
+    requestAnimationFrame(() => {
+      resetHomePosition();
+      window.setTimeout(resetHomePosition, 80);
+    });
   };
 
   return (
